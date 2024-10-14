@@ -1,6 +1,3 @@
-import { LogOut } from "lucide-react";
-import { log } from "util";
-
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -14,8 +11,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         if (validUser) {
           const token = "698134asdgas67"; // Hard coded token but if we use the JWT as mentioned before it would be harder to have a security breach.
+          setStore({ token });
           localStorage.setItem("token", token);
-          return true;
+          return { token };
         } else {
           console.log("Invalid credentials");
           return false;
@@ -33,10 +31,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           if (response.ok) {
             const data = await response.json();
-            setStore({ useers: data });
+            setStore({ users: data });
             return data;
           } else {
-            throw new Error("Failed to fecth Data");
+            throw new Error("Failed to fetch Data");
           }
         } catch (error) {
           console.log(error);

@@ -29,13 +29,7 @@ export const Dashboard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         actions.logout();
-        Swal.fire(
-          "Logged Out!",
-          "You have been logged out successfully.",
-          "success"
-        ).then(() => {
-          <Navigate to={"/"} />;
-        });
+        <Navigate to={"/"} />;
       }
     });
   };
